@@ -1,0 +1,19 @@
+{
+  "name": "nuclear-local-files",
+  "version": "1.0.0",
+  "description": "Play local audio files inside Nuclear",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "@nuclearplayer/plugin-sdk": "^1.0.0",
+    "idb": "^8.0.0",
+    "music-metadata-browser": "^2.5.11"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  }
+}
