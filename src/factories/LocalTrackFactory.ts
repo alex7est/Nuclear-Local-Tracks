@@ -7,7 +7,7 @@ export default class LocalTrackFactory {
   constructor(private readonly providerId: string) {}
 
   public build(file: File, imported: ImportedTrack): LocalTrack {
-    const id = crypto.randomUUID();
+    const id = imported.fingerprint; // was: crypto.randomUUID()
 
     const importedAt = new Date().toISOString();
 

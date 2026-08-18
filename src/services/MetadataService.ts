@@ -1,4 +1,4 @@
-import { parseBlob } from "music-metadata-browser";
+import { parseBlob } from "music-metadata";
 import type { AudioMetadata } from "../models/AudioMetadata";
 
 export default class MetadataService {

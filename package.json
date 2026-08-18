@@ -9,9 +9,9 @@
     "watch": "tsc -w"
   },
   "dependencies": {
-    "@nuclearplayer/plugin-sdk": "^1.0.0",
+    "@nuclearplayer/plugin-sdk": "^2.8.0",
     "idb": "^8.0.0",
-    "music-metadata-browser": "^2.5.11"
+    "music-metadata": "^11.14.0"
   },
   "devDependencies": {
     "typescript": "^5.8.0"

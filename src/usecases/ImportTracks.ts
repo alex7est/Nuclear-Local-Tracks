@@ -6,19 +6,15 @@ import Persistence from "../services/Persistence";
 import QueueService from "../services/QueueService";
 import PersistedTrackMapper from "../mappers/PersistedTrackMapper";
 import SdkTrackFactory from "../factories/SdkTrackFactory";
+import { PROVIDER_ID } from "../constants";
 
 import type { ImportResult } from "../models/ImportResult";
 
 export default class ImportTracks {
   constructor(
     private readonly metadata: MetadataService,
-
-    private readonly sdkTrackFactory: SdkTrackFactory,
-
     private readonly store: LocalTrackStore,
-
     private readonly queue: QueueService,
-
     private readonly persistence: Persistence,
   ) {}
 
@@ -37,11 +33,14 @@ export default class ImportTracks {
 
         if (this.store.hasFingerprint(metadata.fingerprint)) {
           duplicates++;
-
           continue;
         }
 
-        const importedTrack = this.sdkTrackFactory.create(metadata);
+        const importedTrack = SdkTrackFactory.create(
+          metadata.fingerprint,
+          PROVIDER_ID,
+          metadata,
+        );
 
         const localTrack = this.store.importTrack(file, importedTrack);
 
@@ -57,7 +56,6 @@ export default class ImportTracks {
 
         errors.push({
           file,
-
           error,
         });
       }
@@ -67,13 +65,9 @@ export default class ImportTracks {
 
     return {
       imported,
-
       duplicates,
-
       failed,
-
       tracks: importedTracks,
-
       errors,
     };
   }
